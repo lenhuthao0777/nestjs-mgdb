@@ -18,6 +18,9 @@ export const HandleResponse = (code?: number, message?: string, data?: any) => {
         message,
       };
 
+    case 401:
+      throw new BadRequestException(message);
+
     case 400:
       throw new BadRequestException(message);
 
