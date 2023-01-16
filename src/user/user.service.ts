@@ -6,7 +6,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserLogin } from './dto/login-user.dto';
 import { hash, compare } from 'bcryptjs';
-import { HandleResponse } from 'src/hooks/gobal.hook';
+import { HandleResponse } from '@src/hooks/global.hook';
 
 @Injectable()
 export class UserService {
