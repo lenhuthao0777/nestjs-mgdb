@@ -5,13 +5,14 @@ import { join } from 'path';
 
 // Components
 import { UserModule } from '@src/user/user.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       name: 'default',
       type: 'mongodb',
-      url: 'mongodb+srv://shop-shoes:bs2zVGdRneIe9wHE@cluster0.i4rykqo.mongodb.net/max_app?retryWrites=true&w=majority',
+      url: 'mongodb+srv://shop-shoes:bs2zVGdRneIe9wHE@cluster0.i4rykqo.mongodb.net/max?retryWrites=true&w=majority',
       useNewUrlParser: true,
       autoLoadEntities: true,
       useUnifiedTopology: true,
@@ -21,6 +22,7 @@ import { UserModule } from '@src/user/user.module';
       subscribers: ['src/subscriber/**/*.ts'],
     }),
     UserModule,
+    RolesModule,
   ],
   controllers: [],
   providers: [],

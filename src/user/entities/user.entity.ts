@@ -1,9 +1,9 @@
-import { Column, Entity, ObjectIdColumn, ObjectID, Unique } from 'typeorm';
+import { Column, Entity, ObjectIdColumn, ObjectID, Generated } from 'typeorm';
 
 @Entity()
 export class User {
   @ObjectIdColumn()
-  id?: ObjectID;
+  _id?: ObjectID;
 
   @Column()
   name: string;
@@ -12,11 +12,17 @@ export class User {
   email: string;
 
   @Column({ unique: true })
-  phone: string;
+  phone!: string;
 
   @Column()
   password: string;
 
   @Column()
-  role: number;
+  role_id: string;
+
+  @Column({ type: 'timestamptz', default: new Date() })
+  create_at?: Date;
+
+  @Column({ type: 'timestamptz', default: new Date() })
+  update_at?: Date;
 }

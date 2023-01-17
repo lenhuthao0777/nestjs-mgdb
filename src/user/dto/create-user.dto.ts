@@ -3,5 +3,7 @@ export class RegisterUserDto {
   email: string;
   phone: string;
   password: string;
-  role?: number;
+  role_id: string;
+  create_at: Date;
+  update_at: Date;
 }
