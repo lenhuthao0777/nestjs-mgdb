@@ -1,8 +1,12 @@
-import { BadRequestException } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpStatus,
+  UnauthorizedException,
+} from '@nestjs/common';
 
 export const HandleResponse = (code?: number, message?: string, data?: any) => {
   switch (code) {
-    case 200:
+    case HttpStatus.OK:
       return {
         status: 'Ok',
         code,
@@ -10,7 +14,7 @@ export const HandleResponse = (code?: number, message?: string, data?: any) => {
         message,
       };
 
-    case 201:
+    case HttpStatus.CREATED:
       return {
         status: 'Success',
         code,
@@ -18,11 +22,11 @@ export const HandleResponse = (code?: number, message?: string, data?: any) => {
         message,
       };
 
-    case 401:
+    case HttpStatus.UNAUTHORIZED:
       throw new BadRequestException(message);
 
-    case 400:
-      throw new BadRequestException(message);
+    case HttpStatus.BAD_REQUEST:
+      throw new UnauthorizedException(message);
 
     default:
       break;

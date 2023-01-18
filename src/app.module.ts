@@ -6,6 +6,7 @@ import { join } from 'path';
 // Components
 import { UserModule } from '@src/user/user.module';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RolesModule } from './roles/roles.module';
     }),
     UserModule,
     RolesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

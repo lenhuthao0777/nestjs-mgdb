@@ -5,36 +5,30 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegisterUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { UserLogin } from './dto/login-user.dto';
+import { JwtGuards } from '@src/auth/guards/jwt.guards';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
-  @Post('/register')
-  create(@Body() register: RegisterUserDto) {
-    return this.userService.register(register);
-  }
 
   @Get()
   async findAll(): Promise<any> {
     return this.userService.findAll();
   }
 
-  @Post('/login')
-  findById(@Body() userLogin: UserLogin): Promise<UserLogin> {
-    return this.userService.login(userLogin);
+  @UseGuards(JwtGuards)
+  @Get(':id')
+  findOne(@Param('id') name: string) {
+    return this.userService.getUserById(name);
   }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.userService.findOne(+id);
-  // }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
